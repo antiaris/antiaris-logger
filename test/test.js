@@ -46,7 +46,9 @@ describe('logger', () => {
         it('should output to file', done => {
             const logPath = __dirname + '/file.log';
 
-            fs.unlinkSync(logPath);
+            try {
+                fs.unlinkSync(logPath);
+            } catch (e) {}
 
             const writable = fs.createWriteStream(logPath, {
                 flags: 'a'
