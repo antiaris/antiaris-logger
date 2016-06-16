@@ -23,12 +23,14 @@ const themes = {
     error: 'red'
 };
 
+const noop = n => n;
+
 colors.setTheme(themes);
 
 const functions = Object.keys(themes);
 
 let currentLevel = functions[0];
-let currentOutStream;
+let currentOutStream = process.stdout;
 let stopColor = false;
 
 const setLevel = exports.setLevel = level => {
@@ -47,16 +49,14 @@ const setOutStream = exports.setOutStream = stream => {
 }
 
 setLevel(process.env.ANTIARIS_LOG_LEVEL);
-setOutStream(process.stdout);
 
 functions.forEach(func => {
     exports[func] = (...args) => {
         return new Promise(resolve => {
             if (functions.indexOf(func) >= functions.indexOf(currentLevel)) {
-                currentOutStream.write(`[${new Date().toISOString()}]` +
-                    `[${func[0].toUpperCase()}]` + (
-                        stopColor ? args.join(' ') : args.map(
-                            colors[func]).join(' ')) + '\n', 'utf-8', () => {
+                currentOutStream.write((stopColor ? noop : colors[func])(
+                        `[${new Date().toISOString()}][${func[0].toUpperCase()}]`) + args.map((stopColor ? noop : colors[func])).join(
+                        ' ') + '\n', 'utf-8', () => {
                         resolve();
                     });
             } else {
