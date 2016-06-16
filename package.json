@@ -1,0 +1,33 @@
+{
+  "name": "antiaris-logger",
+  "version": "1.0.0",
+  "description": "Logger for antiaris",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/.bin/mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/antiaris/antiaris-logger.git"
+  },
+  "keywords": [
+    "antiaris",
+    "logger",
+    "log"
+  ],
+  "engine": {
+    "node": ">=6.0.0"
+  },
+  "author": "yanni4night@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/antiaris/antiaris-logger/issues"
+  },
+  "homepage": "https://github.com/antiaris/antiaris-logger#readme",
+  "dependencies": {
+    "colors": "^1.1.2"
+  },
+  "devDependencies": {
+    "mocha": "^2.5.3"
+  }
+}
