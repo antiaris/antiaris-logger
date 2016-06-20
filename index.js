@@ -4,9 +4,10 @@
  *
  * changelog
  * 2016-06-16[13:06:53]:revised
+ * 2016-06-20[13:37:51]:change order
  *
  * @author yanni4night@gmail.com
- * @version 1.0.0
+ * @version 2.0.0
  * @since 1.0.0
  */
 'use strict';
@@ -15,10 +16,10 @@ const colors = require('colors/safe');
 const WritableStream = require('stream').Writable;
 
 const themes = {
-    info: 'green',
     data: 'grey',
     help: 'cyan',
     debug: 'blue',
+    info: 'green',
     warn: 'yellow',
     error: 'red'
 };
@@ -55,10 +56,11 @@ functions.forEach(func => {
         return new Promise(resolve => {
             if (functions.indexOf(func) >= functions.indexOf(currentLevel)) {
                 currentOutStream.write((stopColor ? noop : colors[func])(
-                        `[${new Date().toISOString()}][${func[0].toUpperCase()}]`) + args.map((stopColor ? noop : colors[func])).join(
-                        ' ') + '\n', 'utf-8', () => {
-                        resolve();
-                    });
+                    `[${new Date().toISOString()}][${func[0].toUpperCase()}]`) + args.map((
+                    stopColor ? noop : colors[func])).join(
+                    ' ') + '\n', 'utf-8', () => {
+                    resolve();
+                });
             } else {
                 reject(new Error(`${func} < ${currentLevel}`));
             }

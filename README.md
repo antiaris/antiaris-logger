@@ -4,16 +4,16 @@
 日志。
 
 ```js
-import logger, {info, data, help, debug, warn, error} from 'antiaris-logger';
+import logger, {data, help, debug, warn, info, error} from 'antiaris-logger';
 
 logger.setLevel('log');
 
 logger.setOutStream(fs.createWriteStream('/log.log', {flags: 'a'});)
 
-info('record info message');
 data('record data message');
 help('record help message');
 debug('record debug message');
+info('record info message');
 warn('record warn message');
 error('record error message').then(()=>{
     // record complete

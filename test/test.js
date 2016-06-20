@@ -16,20 +16,20 @@ const assert = require('assert');
 
 describe('logger', () => {
     describe('message types', () => {
-        it('should print info message', () => {
-            logger.info('This is a info message', '=>', 'Hello, Artiaris');
-        });
         it('should print data message', () => {
             logger.data('This is a data message', '=>', 'Hello, Artiaris');
         });
         it('should print help message', () => {
             logger.help('This is a help message', '=>', 'Hello, Artiaris');
         });
-        it('should print warn message', () => {
-            logger.warn('This is a warn message', '=>', 'Hello, Artiaris');
-        });
         it('should print debug message', () => {
             logger.debug('This is a debug message', '=>', 'Hello, Artiaris');
+        });
+        it('should print info message', () => {
+            logger.info('This is a info message', '=>', 'Hello, Artiaris');
+        });
+        it('should print warn message', () => {
+            logger.warn('This is a warn message', '=>', 'Hello, Artiaris');
         });
         it('should print error message', () => {
             logger.error('This is a error message', '=>', 'Hello, Artiaris');
@@ -38,8 +38,9 @@ describe('logger', () => {
     describe('#setLevel', () => {
         it('should hide "info" message if level="debug"', () => {
             logger.setLevel('debug');
-            logger.info('This should not be printed');
+            logger.data('This should not be printed');
             logger.debug('This should be printed');
+            logger.info('This should be printed');
         });
     });
     describe('#setOutStream', () => {
